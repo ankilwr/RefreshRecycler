@@ -1,0 +1,3 @@
+rootProject.name = "RefreshRecyclerDemo"
+include ':app'
+include ':RefreshRecycler'
