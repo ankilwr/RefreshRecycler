@@ -2,7 +2,36 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+//apply plugin: 'org.jetbrains.dokka'
+
+ext {
+    bintrayRepo = 'RefreshRecycler'
+    bintrayName = 'RefreshRecycler'
+
+    libraryName = 'RefreshRecycler'
+    libraryDescription = 'A multi-state refresh control'
+
+    publishedGroupId = 'com.mellivora'
+    artifact = 'RefreshRecycler'
+    libraryVersion = '1.0.0'
+
+
+    siteUrl = 'https://github.com/ankilwr/RefreshRecycler'
+    gitUrl = 'https://github.com/ankilwr/RefreshRecycler.git'
+
+
+    developerId = 'ankilwr'
+    developerName = 'Mellivora Capensis'
+    developerEmail = 'ankilwr@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
 android {
+
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -10,9 +39,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionName "1.0.0"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -28,12 +55,38 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.interpolator:interpolator:1.0.0"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'
-
 }
+
+
+
+//task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+//    outputFormat = 'javadoc'
+//    outputDirectory = javadoc.destinationDir
+//}
+//task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+//    group = 'jar'
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+//task generateSourcesJar(type: Jar) {
+//    group = 'jar'
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
+//artifacts {
+//    archives generateJavadoc //javadocJar
+//    archives generateSourcesJar //sourcesJar
+//}
+
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+
+

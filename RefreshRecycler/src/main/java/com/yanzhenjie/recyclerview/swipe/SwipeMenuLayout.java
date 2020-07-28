@@ -28,6 +28,8 @@ import android.widget.FrameLayout;
 import android.widget.OverScroller;
 import android.widget.TextView;
 
+import com.mellivora.pullview.R;
+
 
 public class SwipeMenuLayout extends FrameLayout implements SwipeSwitch {
 

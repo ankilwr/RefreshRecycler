@@ -44,7 +44,7 @@ import androidx.core.view.NestedScrollingParent;
 import androidx.core.view.NestedScrollingParentHelper;
 import androidx.core.view.ViewCompat;
 
-import com.yanzhenjie.recyclerview.swipe.R;
+import com.mellivora.pullview.R;
 
 
 /**

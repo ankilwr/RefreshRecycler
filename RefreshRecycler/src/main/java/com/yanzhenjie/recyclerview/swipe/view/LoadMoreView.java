@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.yanzhenjie.recyclerview.swipe.R;
+import com.mellivora.pullview.R;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 public class LoadMoreView extends LinearLayout implements SwipeMenuRecyclerView.LoadMoreAction {
