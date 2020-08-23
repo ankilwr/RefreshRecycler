@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mellivora.pulltorefresh.PullRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pullView"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent">
+
+    <com.mellivora.refresh.PullRecyclerView
+        android:id="@+id/pullView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/btnRefresh"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@mipmap/refresh"
+        android:contentDescription="@null"/>
+
+</FrameLayout>
+

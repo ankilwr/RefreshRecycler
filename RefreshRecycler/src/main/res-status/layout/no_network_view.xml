@@ -8,6 +8,7 @@
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/blockContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
-            android:src="@mipmap/ic_network_error"
-            app:layout_constraintBottom_toTopOf="@id/tvStatusHintContent"
+            android:src="@mipmap/ic_network_error_default"
+            app:layout_constraintBottom_toTopOf="@id/tvNetworkErrorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,10 +27,10 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/tvStatusHintContent"
+            android:id="@+id/tvNetworkErrorHint"
             style="@style/MultipleStatusView.Content"
             android:textSize="15dp"
-            android:textColor="#333333"
+            android:textColor="#737373"
             android:layout_below="@id/networkErrorRetryView"
             android:text="@string/no_network_view_hint"
             app:layout_constraintBottom_toBottomOf="parent"

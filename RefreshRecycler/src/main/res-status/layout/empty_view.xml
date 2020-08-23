@@ -8,18 +8,19 @@
     android:overScrollMode="never">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/blockContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvStatusHintContent"
+            android:id="@+id/tvEmptyHint"
             style="@style/MultipleStatusView.Content"
             android:layout_width="0dp"
-            android:drawableTop="@mipmap/ic_empty"
+            android:drawableTop="@mipmap/ic_empty_default"
             android:drawablePadding="10dp"
             android:gravity="center"
             android:paddingStart="60dp"
-            android:textColor="#333333"
+            android:textColor="#737373"
             android:textSize="15dp"
             android:paddingEnd="60dp"
             android:text="@string/empty_view_hint"

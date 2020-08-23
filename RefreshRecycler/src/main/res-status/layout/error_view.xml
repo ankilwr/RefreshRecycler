@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
-            android:src="@mipmap/ic_error"
-            app:layout_constraintBottom_toTopOf="@id/tvStatusHintContent"
+            android:src="@mipmap/ic_error_default"
+            app:layout_constraintBottom_toTopOf="@id/tvErrorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +27,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/tvStatusHintContent"
+            android:id="@+id/tvErrorHint"
             style="@style/MultipleStatusView.Content"
             android:layout_width="0dp"
             android:layout_below="@id/errorRetryView"
@@ -36,7 +36,7 @@
             android:layout_marginEnd="60dp"
             android:gravity="center"
             android:text="@string/error_view_hint"
-            android:textColor="#333333"
+            android:textColor="#737373"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
