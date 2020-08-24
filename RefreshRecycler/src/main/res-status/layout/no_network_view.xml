@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/networkErrorView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/blockContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.33" />
+
 
         <ImageView
             android:id="@+id/networkErrorRetryView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:src="@mipmap/ic_network_error_default"
-            app:layout_constraintBottom_toTopOf="@id/tvNetworkErrorHint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3333"
-            app:layout_constraintVertical_chainStyle="packed" />
+            android:src="@mipmap/ic_network_error_default" />
 
         <TextView
             android:id="@+id/tvNetworkErrorHint"
             style="@style/MultipleStatusView.Content"
-            android:textSize="15dp"
-            android:textColor="#737373"
-            android:layout_below="@id/networkErrorRetryView"
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:text="@string/no_network_view_hint"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/networkErrorRetryView" />
+            android:textColor="#737373"
+            android:textSize="15dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.66" />
+
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

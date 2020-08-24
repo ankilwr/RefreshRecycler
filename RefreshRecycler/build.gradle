@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 103
-        versionName "1.0.3"
+        versionCode 110
+        versionName "1.1.0"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -31,7 +31,7 @@ dependencies {
     compileOnly 'com.scwang.smart:refresh-layout-kernel:2.0.1'
 }
 
-//apply from: "../config.gradle"
+apply from: "../config.gradle"
 
 
 

@@ -2,10 +2,7 @@ package com.mellivora.demo
 
 import android.app.Application
 import android.content.Context
-import com.mellivora.demo.refresh.DemoErrorStatus
 import com.mellivora.multiple.MultipleStatusView
-import com.mellivora.multiple.api.MultipleStatus
-import com.mellivora.multiple.api.StatusViewCreator
 import com.mellivora.multiple.status.EmptyStatusView
 import com.mellivora.multiple.status.ErrorStatusView
 import com.mellivora.multiple.status.LoadingStatusView
