@@ -92,10 +92,11 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
     }
 
 
-    private fun onSizeChange(count: Int, emptyView: View?) {
-        if (emptyView != null) {
+    private fun onSizeChange(count: Int, emptyView: View?, isAdapterEmpty: Boolean) {
+        if (isAdapterEmpty || emptyView != null) {
+            //当isAdapterEmpty为true时, emptyView为空也要出现内容，因为有Adapter添加头部的场景
             refreshLayout.setEnableRefresh(headerEnable)
-            emptyView.visibility = if (count > 0) View.GONE else View.VISIBLE
+            emptyView?.visibility = if (count > 0) View.GONE else View.VISIBLE
             return
         }
         if (count > 0) {
@@ -130,8 +131,8 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
         }
     }
 
-    fun setAdapter(adapter: RecyclerView.Adapter<*>?, adapterEmptyView: View? = null) {
-        onSizeChange(adapter?.itemCount ?: 0, adapterEmptyView)
+    fun setAdapter(adapter: RecyclerView.Adapter<*>?, adapterEmptyView: View? = null, isAdapterView: Boolean = false) {
+        onSizeChange(adapter?.itemCount ?: 0, adapterEmptyView, isAdapterView)
 
         if (swipeRecyclerView.originAdapter != null && pullAdapterObserver != null) {
             swipeRecyclerView.originAdapter.unregisterAdapterDataObserver(pullAdapterObserver!!)
@@ -140,27 +141,27 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
         if (adapter != null) {
             pullAdapterObserver = object : RecyclerView.AdapterDataObserver() {
                 override fun onChanged() {
-                    onSizeChange(adapter.itemCount, adapterEmptyView)
+                    onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
 
                 override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
-                    onSizeChange(adapter.itemCount, adapterEmptyView)
+                    onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
 
                 override fun onItemRangeChanged(positionStart: Int, itemCount: Int, payload: Any?) {
-                    onSizeChange(adapter.itemCount, adapterEmptyView)
+                    onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
 
                 override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-                    onSizeChange(adapter.itemCount, adapterEmptyView)
+                    onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
 
                 override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                    onSizeChange(adapter.itemCount, adapterEmptyView)
+                    onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
 
                 override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-                    onSizeChange(adapter.itemCount, adapterEmptyView)
+                    onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
             }
             adapter.registerAdapterDataObserver(pullAdapterObserver!!)
