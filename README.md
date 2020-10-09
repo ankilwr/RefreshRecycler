@@ -1,5 +1,5 @@
 # RefreshRecycler
-一个多状态加载的刷新控件
+一个多状态加载的刷新控件(简化数据加载时的页面切换以及页码的记录)
 
 ## 简单用例
 #### 1.在 build.gradle 中添加依赖
@@ -17,20 +17,18 @@ implementation  'com.scwang.smart:refresh-header-material:2.0.1'    //谷歌刷�
 implementation  'com.scwang.smart:refresh-header-two-level:2.0.1'   //二级刷新头
 implementation  'com.scwang.smart:refresh-footer-ball:2.0.1'        //球脉冲加载
 implementation  'com.scwang.smart:refresh-footer-classics:2.0.1'    //经典加载
-
 ```
 如果使用 AndroidX 在 gradle.properties 中添加
 
 ```
 android.useAndroidX=true
 android.enableJetifier=true
-
 ```
 
 #### 全局设置
 ```java
 class App: Application {
-    //static 代码段可以防止内存泄露
+
     init {
         //自定义刷新头视图
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
@@ -63,30 +61,38 @@ class App: Application {
 
 
 #### 1.在 Activity 或者 Fragment 中添加代码
-```java
+```kotlin
   PullRecyclerView pullView = pullView.findViewById(R.id.pullview)
   //使用自定义的错误视图(一般使用全局的视图即可，这里模拟有特殊需求的场景)
   pullView.statusView.setErrorStatus(DemoErrorStatus())
-  //设置空内容提示
-  pullView.setEmptyHint("该列表空空如也~")
   //开启下拉刷新 和 加载更多
   pullView.setPullEnable(true, true) 
   //设置加载监听
   pullView.setPullListener { isRefresh, page -> loadData(isRefresh, page) }
+
+  adapter = DemoAdapter()
+  pullView.swipeRecyclerView.layoutManager = LinearLayoutManager(context)
+  pullView.setEmptyHint("该列表空空如也~") //设置空内容提示
+  pullView.setAdapter(adapter)
+
   //默认加载使用加载布局
   pullView.showLoading()
 ```
 
 #### 2.数据加载完毕
-```
-  pullView.loadFinish(isRefresh, moreEnable) //加载完成
-  pullView.loadError(isRefresh, message, code) //加载错误(错误布局根据code切换)
+```kotlin
+  //数据加载完成
+  pullView.loadFinish(isRefresh, moreEnable)
+  //加载错误(错误布局根据code切换)
+  pullView.loadError(isRefresh, message, code)
 ```
 
 
 #### 获取内置控件
-```java
+```kotlin
 PullRecyclerView.swipeRecyclerView //内置的RecyclerView列表控件
 PullRecyclerView.refreshLayout //内置的SmartRefreshLayout刷新控件
 PullRecyclerView.statusView //内置的MultipleStatusView状态切换控件
 ```
+
+[SmartRefreshLayout使用文档](https://github.com/scwang90/SmartRefreshLayout)
