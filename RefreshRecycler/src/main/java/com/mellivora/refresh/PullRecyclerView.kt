@@ -15,6 +15,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.mellivora.swipe.SwipeMenuRecyclerView
+import java.lang.Exception
 
 
 class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs), RefreshResultInterface {
@@ -32,7 +33,7 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
     private var footerEnable: Boolean = false
     private var hasMore: Boolean = false
 
-    private var emptyHint: String = "暂无内容"
+    private var emptyHint: String = context.getString(R.string.refresh_empty_content)
 
     private var pullAdapterObserver: RecyclerView.AdapterDataObserver? = null
     private var loadListener: OnRefreshLoadMoreListener? = null
@@ -80,9 +81,10 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
     }
 
     override fun onDetachedFromWindow() {
-        if (swipeRecyclerView.originAdapter != null && pullAdapterObserver != null) {
+        try {
             swipeRecyclerView.originAdapter.unregisterAdapterDataObserver(pullAdapterObserver!!)
-            pullAdapterObserver = null
+        }catch (e: Exception){
+            e.printStackTrace()
         }
         footerLineView?.parent?.let {
             (it as ViewGroup).removeView(footerLineView)
@@ -133,10 +135,6 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
 
     fun setAdapter(adapter: RecyclerView.Adapter<*>?, adapterEmptyView: View? = null, isAdapterView: Boolean = false) {
         onSizeChange(adapter?.itemCount ?: 0, adapterEmptyView, isAdapterView)
-
-        if (swipeRecyclerView.originAdapter != null && pullAdapterObserver != null) {
-            swipeRecyclerView.originAdapter.unregisterAdapterDataObserver(pullAdapterObserver!!)
-        }
         swipeRecyclerView.adapter = adapter
         if (adapter != null) {
             pullAdapterObserver = object : RecyclerView.AdapterDataObserver() {
@@ -164,7 +162,11 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
                     onSizeChange(adapter.itemCount, adapterEmptyView, isAdapterView)
                 }
             }
-            adapter.registerAdapterDataObserver(pullAdapterObserver!!)
+            try {
+                adapter.registerAdapterDataObserver(pullAdapterObserver!!)
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
         }
     }
 
