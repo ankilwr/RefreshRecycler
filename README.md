@@ -6,7 +6,7 @@
 ```
 //必选
 implementation 'androidx.recyclerview:recyclerview:1.1.0'
-implementation 'com.mellivora:RefreshRecycler:1.2.0'
+implementation 'com.mellivora:RefreshRecycler:1.1.3'
 implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
 
 //可选
