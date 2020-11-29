@@ -177,6 +177,14 @@ public class MultipleStatusView extends RelativeLayout {
         mNoNetworkStatus = status;
     }
 
+    private void addMinHeightView(View statusView){
+        if(getMinimumHeight() > 0){
+            LayoutParams params = (LayoutParams) statusView.getLayoutParams();
+            params.height = Math.max(getHeight(), getMinimumHeight());
+        }
+        addView(statusView, 0);
+    }
+
     /**
      * 显示加载中视图
      * @param hint 自定义提示文本内容
@@ -185,7 +193,7 @@ public class MultipleStatusView extends RelativeLayout {
         changeViewStatus(STATUS_LOADING);
         if (null == mLoadingView) {
             mLoadingView = mLoadingStatus.getView(getContext(), this);
-            addView(mLoadingView, 0);
+            addMinHeightView(mLoadingView);
         }
         showViewByStatus(mLoadingView);
         mLoadingStatus.showMessage(mLoadingView, hint);
@@ -203,7 +211,7 @@ public class MultipleStatusView extends RelativeLayout {
             if (clickView != null) {
                 clickView.setOnClickListener(mOnRetryClickListener);
             }
-            addView(mErrorView, 0);
+            addMinHeightView(mErrorView);
         }
         showViewByStatus(mErrorView);
         mErrorStatus.showMessage(mErrorView, hint);
@@ -222,7 +230,7 @@ public class MultipleStatusView extends RelativeLayout {
             if (clickView != null) {
                 clickView.setOnClickListener(mOnRetryClickListener);
             }
-            addView(mEmptyView, 0);
+            addMinHeightView(mEmptyView);
         }
         showViewByStatus(mEmptyView);
         mEmptyStatus.showMessage(mEmptyView, hint);
@@ -241,7 +249,7 @@ public class MultipleStatusView extends RelativeLayout {
             if (clickView != null) {
                 clickView.setOnClickListener(mOnRetryClickListener);
             }
-            addView(mNoNetworkView, 0);
+            addMinHeightView(mNoNetworkView);
         }
         showViewByStatus(mNoNetworkView);
         mNoNetworkStatus.showMessage(mNoNetworkView, hint);
