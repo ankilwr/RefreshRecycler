@@ -3,6 +3,7 @@
 
 ## 简单用例
 #### 1.在项目根 build.gradle 中添加依赖
+```
 allprojects {
     repositories {
 	    ...
