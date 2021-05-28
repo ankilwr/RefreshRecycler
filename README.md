@@ -2,10 +2,16 @@
 一个多状态加载的刷新控件(简化数据加载时的页面切换以及页码的记录)
 
 ## 简单用例
-#### 1.在 build.gradle 中添加依赖
+#### 1.在项目根 build.gradle 中添加依赖
+allprojects {
+    repositories {
+	    ...
+		maven { url 'https://jitpack.io' }
+    }
+}
 ```
 //必选
-implementation 'com.mellivora:RefreshRecycler:1.1.5'
+implementation 'com.github.ankilwr:RefreshRecycler:1.1.9'
 implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
 
 //可选

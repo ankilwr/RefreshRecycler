@@ -80,20 +80,6 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
         setPullEnable(header = false, footer = false)
     }
 
-    override fun onDetachedFromWindow() {
-        try {
-            swipeRecyclerView.originAdapter.unregisterAdapterDataObserver(pullAdapterObserver!!)
-        }catch (e: Exception){
-            e.printStackTrace()
-        }
-        footerLineView?.parent?.let {
-            (it as ViewGroup).removeView(footerLineView)
-        }
-        footerLineView = null
-        super.onDetachedFromWindow()
-    }
-
-
     private fun onSizeChange(count: Int, emptyView: View?, isAdapterEmpty: Boolean) {
         if (isAdapterEmpty || emptyView != null) {
             //当isAdapterEmpty为true时, emptyView为空也要出现内容，因为有Adapter添加头部的场景
@@ -135,6 +121,11 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
 
     fun setAdapter(adapter: RecyclerView.Adapter<*>?, adapterEmptyView: View? = null, isAdapterView: Boolean = false) {
         onSizeChange(adapter?.itemCount ?: 0, adapterEmptyView, isAdapterView)
+        try {
+            pullAdapterObserver?.let {swipeRecyclerView.adapter?.unregisterAdapterDataObserver(it) }
+        }catch (e: Exception){
+
+        }
         swipeRecyclerView.adapter = adapter
         if (adapter != null) {
             pullAdapterObserver = object : RecyclerView.AdapterDataObserver() {
@@ -165,7 +156,7 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
             try {
                 adapter.registerAdapterDataObserver(pullAdapterObserver!!)
             }catch (e: Exception){
-                e.printStackTrace()
+
             }
         }
     }
@@ -264,8 +255,7 @@ class PullRecyclerView(context: Context, attrs: AttributeSet? = null) : FrameLay
     }
 
 
-    private class ScrollListener(val scrollListener: RecyclerView.OnScrollListener) :
-        RecyclerView.OnScrollListener() {
+    private class ScrollListener(val scrollListener: RecyclerView.OnScrollListener) : RecyclerView.OnScrollListener() {
         var scrollX = 0
             private set
         var scrollY = 0
