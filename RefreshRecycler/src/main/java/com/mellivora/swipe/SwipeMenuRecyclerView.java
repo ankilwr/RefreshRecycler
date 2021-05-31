@@ -329,6 +329,18 @@ public class SwipeMenuRecyclerView extends RecyclerView {
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        if (mAdapterWrapper != null && mAdapterWrapper.getOriginAdapter() != null) {
+            try {
+                mAdapterWrapper.getOriginAdapter().registerAdapterDataObserver(mAdapterDataObserver);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        super.onAttachedToWindow();
+    }
+
+    @Override
     protected void onDetachedFromWindow() {
         if (mAdapterWrapper != null) {
             try {
