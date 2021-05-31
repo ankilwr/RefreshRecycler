@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 201
-        versionName "2.0.1"
+        versionCode 202
+        versionName "2.0.2"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -31,7 +31,7 @@ android {
 dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.interpolator:interpolator:1.0.0'
-    compileOnly 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    compileOnly 'com.scwang.smart:refresh-layout-kernel:2.0.3'
 }
 
 //apply from: "../upload.gradle"
